@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.hiarflow.controller.RendezvousController"
+            style="-fx-background-color: #f3faff; -fx-padding: 20;">
+
+    <!-- En-tête avec titre, bienvenue et bouton déconnexion -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-background-color: #2196f3; -fx-padding: 15;">
+            <!-- Titre -->
+            <Label text="Gestion des Rendez-vous"
+                   style="-fx-font-size: 22px; -fx-text-fill: white; -fx-font-weight: bold;"/>
+
+            <Region fx:id="spacer" HBox.hgrow="ALWAYS"/>
+
+            <!-- Message de bienvenue -->
+            <Label fx:id="welcomeLabel" text="Bienvenue $user"
+                   style="-fx-font-size: 14px; -fx-text-fill: white;"/>
+
+            <!-- Bouton de déconnexion -->
+            <Button text="Déconnexion" onAction="#handleLogout"
+                    style="-fx-background-color: white; -fx-text-fill: #2196f3; -fx-font-weight: bold;"/>
+        </HBox>
+    </top>
+
+    <!-- Formulaire de rendez-vous -->
+    <center>
+        <VBox spacing="20" style="-fx-padding: 20;">
+            <HBox spacing="30">
+                <!-- Partie Gauche -->
+                <VBox spacing="10">
+                    <Label text="Nom Client:"/>
+                    <TextField fx:id="nomClientField" promptText="Entrez le nom du client" maxWidth="200"/>
+
+                    <Label text="Prénom Client:"/>
+                    <TextField fx:id="prenomClientField" promptText="Entrez le prénom du client" maxWidth="200"/>
+
+                    <Label text="Téléphone:"/>
+                    <TextField fx:id="telephoneField" promptText="Ex: 06 00 00 00 00" maxWidth="200"/>
+                </VBox>
+
+                <!-- Partie Droite -->
+                <VBox spacing="10">
+                    <Label text="Date:"/>
+                    <DatePicker fx:id="datePicker" maxWidth="200"/>
+
+                    <Label text="Heure (HH:MM):"/>
+                    <TextField fx:id="heureField" promptText="Ex: 14:30" maxWidth="200"/>
+
+                    <HBox spacing="10" style="-fx-padding: 10 0 0 0;">
+                        <Button text="Ajouter" onAction="#handleAddRendezvous"
+                                style="-fx-background-color: #4caf50; -fx-text-fill: white;"/>
+                        <Button text="Modifier" onAction="#handleUpdateRendezvous"
+                                style="-fx-background-color: #2196f3; -fx-text-fill: white;"/>
+                        <Button text="Supprimer" onAction="#handleDeleteRendezvous"
+                                style="-fx-background-color: #f44336; -fx-text-fill: white;"/>
+                    </HBox>
+                </VBox>
+            </HBox>
+
+            <!-- Tableau élargi -->
+            <TableView fx:id="rendezvousTable" prefHeight="300">
+                <columns>
+                    <TableColumn fx:id="idColumn" text="ID" prefWidth="60"/>
+                    <TableColumn fx:id="nomClientColumn" text="Nom" prefWidth="150"/>
+                    <TableColumn fx:id="prenomClientColumn" text="Prénom" prefWidth="150"/>
+                    <TableColumn fx:id="telephoneColumn" text="Téléphone" prefWidth="150"/>
+                    <TableColumn fx:id="dateColumn" text="Date" prefWidth="100"/>
+                    <TableColumn fx:id="heureColumn" text="Heure" prefWidth="100"/>
+                </columns>
+            </TableView>
+        </VBox>
+    </center>
+
+    <!-- Pied de page -->
+    <bottom>
+        <HBox alignment="CENTER" style="-fx-padding: 10;">
+            <Label text="© 2025 HairBooker - Tous droits réservés"
+                   style="-fx-text-fill: #9e9e9e; -fx-font-size: 11px;"/>
+        </HBox>
+    </bottom>
+</BorderPane>
